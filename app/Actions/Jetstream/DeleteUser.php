@@ -2,8 +2,9 @@
 
 namespace App\Actions\Jetstream;
 
-use App\Models\User;
+// use App\Models\User;
 use Laravel\Jetstream\Contracts\DeletesUsers;
+use Illuminate\Foundation\Auth\User ;
 
 class DeleteUser implements DeletesUsers
 {
