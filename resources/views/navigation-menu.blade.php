@@ -1,5 +1,9 @@
 @php
     use Laravel\Jetstream\Jetstream;
+    $photo = Auth::user()->profile_photo_path
+        ? Storage::url(Auth::user()->profile_photo_path)
+        : Auth::user()->profile_photo_url;
+
 @endphp
 
 <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 sticky top-0">
@@ -88,9 +92,9 @@
                             @if (Jetstream::managesProfilePhotos())
                                 <button
                                     class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                                    <img class="h-8 w-8 rounded-full object-cover"
-                                        src="{{ Storage::url(Auth::user()->profile_photo_path) }}"
+                                    <img class="h-8 w-8 rounded-full object-cover" src="{{ $photo }}"
                                         alt="{{ Auth::user()->name }}" />
+
                                 </button>
                             @else
                                 <span class="inline-flex rounded-md">

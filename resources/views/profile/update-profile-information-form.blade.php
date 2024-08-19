@@ -25,8 +25,13 @@
                 <x-label for="photo" value="{{ __('Photo') }}" />
 
                 <!-- Current Profile Photo -->
+                @php
+                    $photo = Auth::user()->profile_photo_path
+                        ? Storage::url(Auth::user()->profile_photo_path)
+                        : Auth::user()->profile_photo_url;
+                @endphp
                 <div class="mt-2" x-show="! photoPreview">
-                    <img src="{{ Storage::url($this->user->profile_photo_path) }}" alt="{{ $this->user->name }}"
+                    <img src="{{ $photo }}" alt="{{ $this->user->name }}"
                         class="rounded-full h-20 w-20 object-cover">
                 </div>
 
